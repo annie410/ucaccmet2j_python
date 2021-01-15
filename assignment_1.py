@@ -20,13 +20,21 @@ for measurement in precip:
         monthly_rain[int(date[1])-1] += measurement["value"]
         # [1] accesses the month value
 
+# saving the monthly rain totals to their own json file
 with open('monthly_rain_seattle.json', 'w') as file:
     json.dump(monthly_rain, file)
 
+# ----------- Part 2 ---------------------
 
+# calculating total year rainfall
+rain_year = sum(monthly_rain)
 
+# empty relative rain variable
+relative_rain = []
 
-
+# adding the relative rain for each month to the empty list
+for month_rain in monthly_rain:
+    relative_rain.append((month_rain/rain_year)*100)
 
 
 
